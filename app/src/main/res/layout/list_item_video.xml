@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="20dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <!--Tag tools usamos para vizualizar imagens no preview do android studio essas imagens não apareceram no nosso app -->
@@ -41,7 +42,7 @@
         tools:text="Shaw Mendes, Camila Cabello - Señorita" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/view_info"
+        android:id="@+id/video_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
