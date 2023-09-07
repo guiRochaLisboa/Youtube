@@ -21,5 +21,50 @@
         android:layout_height="0dp"
         />
 
+    <LinearLayout
+        android:id="@+id/video_player_title"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="@id/video_player"
+        app:layout_constraintEnd_toEndOf="@id/video_player"
+        app:layout_constraintStart_toStartOf="@id/video_player"
+        app:layout_constraintBottom_toBottomOf="@id/video_player"
+        >
+
+        <TextView
+            android:id="@+id/mini_player_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ola mundo Ola mundo Ola mundo Ola mundo Ola mundo Ola mundo Ola mundo Ola mundo Ola mundo Ola mundo Ola mundo"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            />
+
+        <TextView
+            android:id="@+id/mini_player_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ola mundo Ola mundo Ola mundo Ola mundo Ola mundo Ola mundo Ola mundo Ola mundo Ola mundo Ola mundo Ola mundo"
+            android:layout_marginStart="30dp"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            />
+
+
+
+    </LinearLayout>
+
+
+    <SurfaceView android:id="@+id/surface_player"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+         />
+
+
 
 </merge>
