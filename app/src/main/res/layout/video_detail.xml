@@ -19,16 +19,14 @@
         android:layout_height="0dp"
         android:background="@android:color/white"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/video_player">
+        >
 
-        <LinearLayout
+        <include
+            layout="@layout/video_detail_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        </LinearLayout>
+        </include>
 
     </LinearLayout>
 
@@ -44,10 +42,8 @@
         android:layout_height="0dp"
         android:background="@android:color/white"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@id/video_player"
-        app:layout_constraintEnd_toEndOf="@id/video_player"
-        app:layout_constraintStart_toStartOf="@id/video_player"
-        app:layout_constraintTop_toTopOf="@id/video_player">
+        android:paddingStart="0dp"
+        android:paddingEnd="80dp">
 
         <TextView
             android:id="@+id/mini_player_title"
@@ -98,8 +94,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:src="@drawable/ic_keyboard_arrow_down_black_24dp"
-        app:layout_constraintStart_toStartOf="@id/video_player"
-        app:layout_constraintTop_toTopOf="@id/video_player" />
+         />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/playlist_player"
@@ -159,7 +154,6 @@
         android:textStyle="bold"
         android:textColor="@android:color/white"
         android:textSize="12sp"
-        android:layout_marginBottom="10dp"
         android:alpha="0"
         android:src="@drawable/ic_fullscreen_black_24dp"
         app:layout_constraintBottom_toBottomOf="@id/full_player"
@@ -176,7 +170,6 @@
         android:textStyle="bold"
         android:textColor="@android:color/white"
         android:textSize="12sp"
-        android:layout_marginBottom="10dp"
         android:alpha="0"
         android:src="@drawable/ic_fullscreen_black_24dp"
         app:layout_constraintBottom_toBottomOf="@id/full_player"
@@ -239,9 +232,7 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:src="@drawable/ic_play_arrow_black_24dp"
-        app:layout_constraintBottom_toBottomOf="@id/video_player_title"
-        app:layout_constraintEnd_toStartOf="@id/video_cancel_button"
-        app:layout_constraintTop_toTopOf="@id/video_player_title"/>
+        />
 
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -249,9 +240,7 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:src="@drawable/ic_close_black_24dp"
-        app:layout_constraintBottom_toBottomOf="@id/video_player_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/video_player_title"/>
+        />
 
 
     <androidx.appcompat.widget.AppCompatSeekBar

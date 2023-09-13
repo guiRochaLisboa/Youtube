@@ -27,4 +27,4 @@ data class ListVideo(
 )
 
 fun Date.formatted() : String =
-    SimpleDateFormat("d MM yyyy", Locale("pt","BR")).format(this)
+    SimpleDateFormat("d/MM/yyyy", Locale("pt","BR")).format(this)
