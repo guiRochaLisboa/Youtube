@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="20dp"
     >
 
@@ -23,13 +23,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:maxLines="2"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@id/video_action"
         app:layout_constraintStart_toEndOf="@id/video_thumbnail"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Entrevista com o Marlon Wayans | The Noite" />
     
     <TextView
-        android:id="@+id/vide_info"
+        android:id="@+id/video_info"
         android:layout_width="0dp"
         tools:text="Entrevista com o Marlon Wayans | The Noite"
         android:layout_marginTop="3dp"
