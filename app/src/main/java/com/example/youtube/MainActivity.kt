@@ -20,6 +20,7 @@ import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
     private lateinit var videoAdapter : VideoAdapter
+    private lateinit var youtubePlayer : YoutubePlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,8 +51,24 @@ class MainActivity : AppCompatActivity() {
                     //progress_recycler.visibility = View.GONE
                 }
             }
-
         }
+
+        preparePlayer()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        youtubePlayer.release()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        youtubePlayer.pause()
+    }
+
+     private fun preparePlayer(){
+         youtubePlayer = YoutubePlayer(this)
+        surface_player.holder.addCallback(youtubePlayer)
     }
 
     private fun showOverlayView(video: Video) {
@@ -95,6 +112,9 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+
+        video_player.visibility = View.GONE
+        youtubePlayer.setUrl(video.videoUrl)
 
         val detailAdapter = VideoDetailAdapter(videos())
         rv_similar.layoutManager = LinearLayoutManager(this)
