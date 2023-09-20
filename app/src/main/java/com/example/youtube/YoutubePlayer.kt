@@ -6,14 +6,17 @@ import android.net.Uri
 import android.os.Handler
 import android.view.SurfaceHolder
 import androidx.media3.common.MediaItem
+import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
-import androidx.media3.common.util.UnstableApi
+import androidx.media3.common.util.Log
 import androidx.media3.common.util.Util
-import androidx.media3.datasource.DefaultDataSource
 import androidx.media3.datasource.DefaultDataSourceFactory
+import androidx.media3.exoplayer.ExoPlaybackException
 import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.mediacodec.MediaCodecInfo.TAG
 import androidx.media3.exoplayer.source.MediaSource
 import androidx.media3.exoplayer.source.ProgressiveMediaSource
+import com.google.android.material.color.utilities.MaterialDynamicColors
 
 
 //Classe referente ao nosso Callback com nosso VideoPlayer
@@ -24,6 +27,7 @@ class YoutubePlayer(private val context: Context) : SurfaceHolder.Callback{
     var youtubePlayerListener: YoutubePlayerListener? = null
     private lateinit var runnable: Runnable
     private val handler= Handler()
+
 
 
     override fun surfaceCreated(holder: SurfaceHolder) {
@@ -41,8 +45,9 @@ class YoutubePlayer(private val context: Context) : SurfaceHolder.Callback{
         mediaPlayer?.release()
     }
 
-    @SuppressLint("UnsafeOptInUsageError")
-    fun setUrl(url: String){
+    //////  @SuppressLint("UnsafeOptInUsageError") foi necessário para alguns métodos depreciados do ExoPlayer \\\\\\\\\\\\
+    fun setUrl(url: String) {
+
         mediaPlayer?.let {
             val dataSourceFactory = DefaultDataSourceFactory(
                 context,
@@ -67,9 +72,12 @@ class YoutubePlayer(private val context: Context) : SurfaceHolder.Callback{
         }
     }
 
+
+
+    /////Método chamado quando nosso vídeo está sendo apresentado, atualizando nosso contador e SeekBar
     private fun trackTime(){
         mediaPlayer?.let {
-            youtubePlayerListener?.onTrackTime(it.currentPosition * 100 / it.duration)
+            youtubePlayerListener?.onTrackTime(it.currentPosition,it.currentPosition * 100 / it.duration)
             if (it.isPlaying){
                 runnable = Runnable {
                     trackTime()
@@ -91,8 +99,18 @@ class YoutubePlayer(private val context: Context) : SurfaceHolder.Callback{
         mediaPlayer?.release()
     }
 
+    fun seek(progress: Long){
+        if(progress > 0 ){
+            mediaPlayer?.let {
+                val seek = progress * it.duration / 100
+                it.seekTo(seek)
+            }
+        }
+    }
+
+    //Interface para atualizarmos nossa MainActivity.
     interface YoutubePlayerListener {
         fun onPrepared(duration: Int)
-        fun onTrackTime(currentePosition: Long)
+        fun onTrackTime(currentePosition: Long,percent: Long)
     }
 }

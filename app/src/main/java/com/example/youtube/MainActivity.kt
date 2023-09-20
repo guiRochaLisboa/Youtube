@@ -1,10 +1,12 @@
 package com.example.youtube
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
+import android.widget.SeekBar
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.GsonBuilder
@@ -53,6 +55,22 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        seek_bar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                if(fromUser){
+                    youtubePlayer.seek(progress.toLong())
+                }
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+
+            }
+
+        })
         preparePlayer()
     }
 
@@ -68,14 +86,16 @@ class MainActivity : AppCompatActivity() {
 
      private fun preparePlayer(){
          youtubePlayer = YoutubePlayer(this)
+         youtubePlayer
          youtubePlayer.youtubePlayerListener = object : YoutubePlayer.YoutubePlayerListener{
              override fun onPrepared(duration: Int) {
 
              }
 
-             override fun onTrackTime(currentePosition: Long) {
-                 motion_container.seek_bar.progress = currentePosition.toInt()
+             override fun onTrackTime(currentePosition: Long,percent: Long) {
+                 motion_container.seek_bar.progress = percent.toInt()
                  motion_container.current_time.text = currentePosition.formatTime()
+                 println(currentePosition.formatTime())
              }
 
          }
